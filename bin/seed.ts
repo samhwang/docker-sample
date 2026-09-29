@@ -17,4 +17,4 @@ async function run() {
   await db.insert(user).values(values);
 }
 
-run();
+void run();
