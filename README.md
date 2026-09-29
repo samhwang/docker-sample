@@ -46,3 +46,5 @@ Explore the ways to improve your current Docker file. Keywords & articles to loo
 - [Docker Node.js official guide](https://docs.docker.com/guides/nodejs/)
 - [Docker build best practices](https://docs.docker.com/build/building/best-practices/)
 - [Docker build cache](https://docs.docker.com/build/cache/)
+- [Dockerfile syntax](https://docs.docker.com/reference/dockerfile/)
+- [Docker Compose syntax](https://docs.docker.com/reference/compose-file/)
