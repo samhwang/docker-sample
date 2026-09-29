@@ -1,0 +1,8 @@
+{
+  "base": "master",
+  "verbose": true,
+  "tasks": {
+    "*": ["oxlint --no-error-on-unmatched-pattern", "oxfmt --check --no-error-on-unmatched-pattern"],
+    "*.[js,jsx,ts,tsx]": ["tsc", "vitest run"]
+  }
+}
