@@ -17,11 +17,17 @@
     "lint:fix:unsafe": "oxlint --fix-dangerously . && oxfmt --write .",
     "ci": "pnpm run lint && pnpm run typecheck && pnpm run test"
   },
+  "dependencies": {
+    "drizzle-orm": "^1.0.0-rc.4",
+    "hono": "^4.13.10",
+    "pg": "^8.23.0"
+  },
   "devDependencies": {
     "@oxc-node/cli": "^0.1.3",
     "@oxc-node/core": "^0.1.3",
     "@types/node": "^26.6.2",
     "@vitest/coverage-v8": "^5.0.1",
+    "drizzle-kit": "1.0.0-rc.4",
     "husky": "^9.1.7",
     "lint-prepush": "^3.0.3",
     "lint-staged": "^17.5.1",
