@@ -8,3 +8,10 @@ coverage
 
 # Build output
 dist
+
+# env
+.env*
+!.env.sample
+
+# docker volume
+.docker
