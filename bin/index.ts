@@ -1,4 +1,14 @@
 #!/usr/bin/env node
-import { sayHello } from '../src/index';
+import { serve } from '@hono/node-server';
 
-sayHello();
+import app from '../src/app';
+
+serve(
+  {
+    fetch: app.fetch,
+    port: 3000,
+  },
+  (info) => {
+    console.log('App launched!', info);
+  }
+);
