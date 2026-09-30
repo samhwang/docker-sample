@@ -1,4 +1,5 @@
-# Multi-stage build: separate build stage from prod stage. Only runtime dependencies in final image.
+# Multi-stage build: build stage installs all deps then prunes to prod-only with --prod flag,
+# avoiding separate prod-deps stage. Final stage copies only dist and runtime deps.
 FROM node:26 AS build
 
 RUN npm install -g pnpm@12
@@ -25,4 +26,4 @@ COPY --from=build /app/node_modules ./node_modules
 
 EXPOSE 3000
 
-CMD ["node", "dist/index.mjs"]
+CMD ["node", "/app/dist/index.mjs"]
