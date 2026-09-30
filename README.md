@@ -84,12 +84,14 @@ Troubleshooting: if `/api/users` fails, check POSTGRES_HOST. Containers in the s
 
 ### Check your work
 
-- `docker images` — which column is DISK USAGE vs CONTENT SIZE.
-- `docker image inspect docker-sample-app --format '{{.Size}}'` — exact bytes on disk.
-- `docker history docker-sample-app` — per-layer sizes; base image dominates.
-- `docker run --rm --entrypoint sh docker-sample-app -c 'ls /app/node_modules/.pnpm | grep -ci vitest'` — must print 0.
-- `docker run --rm --entrypoint sh docker-sample-app -c 'du -sh /app/node_modules'` — total size.
-- `docker exec sample whoami` — should not be `root`.
+Commands assume `WORKDIR /app` in your Dockerfile; adjust the path if you used another.
+
+- `docker images`: which column is DISK USAGE vs CONTENT SIZE.
+- `docker image inspect docker-sample-app --format '{{.Size}}'`: exact bytes on disk.
+- `docker history docker-sample-app`: per-layer sizes; base image dominates.
+- `docker run --rm --entrypoint sh docker-sample-app -c 'ls /app/node_modules/.pnpm | grep -ci vitest'`: must print 0.
+- `docker run --rm --entrypoint sh docker-sample-app -c 'du -sh /app/node_modules'`: total size.
+- `docker exec sample whoami`: should not be `root`.
 
 ### Tear down
 
