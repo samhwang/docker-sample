@@ -1,5 +1,5 @@
-# Multi-stage build: build stage installs all deps then prunes to prod-only with --prod flag,
-# avoiding separate prod-deps stage. Final stage copies only dist and runtime deps.
+# Multi-stage build: final slim image carries only dist and production dependencies.
+# Build stage installs all deps, then 'pnpm install --prod' prunes development deps.
 FROM node:26 AS build
 
 RUN npm install -g pnpm@12
