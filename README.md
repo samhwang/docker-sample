@@ -80,15 +80,15 @@ Troubleshooting: if `/api/users` fails, check POSTGRES_HOST. Containers in the s
 - [ ] Test layer caching: edit `src/app.ts`, rebuild. The pnpm install layer must be skipped (not re-run).
 - [ ] Run `docker exec sample whoami` in a running container. Should not be `root`.
 - [ ] Final stage contains no devDependencies. Check with `docker run docker-sample-app sh -c 'ls node_modules'` (no `@types`, no `vitest`, etc).
-- [ ] Persist database data across `docker compose down` / `up` using Docker volumes. Steps: seed DB, run compose, `docker compose down` (without `-v`), `docker compose up`. Users table persists. Then `docker compose down -v`, `docker compose up`. Users table is empty.
+- [ ] Persist database data across `docker compose down` / `up` using a bind mount to `./.docker/postgres/data`. Steps: seed DB, run compose, `docker compose down`, `docker compose up`. Users table persists. Reset: `docker compose down`, `rm -rf ./.docker/postgres/data`, `docker compose up`. Users table is empty.
 
 ### Tear down
 
 ```shell
-docker compose down -v
+docker compose down
 ```
 
-`-v` removes named volumes, resetting the database; omit it to keep data.
+`-v` removes named volumes only; bind mount data persists until you delete the folder (`rm -rf ./.docker/postgres/data`).
 
 ## References
 
