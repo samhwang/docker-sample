@@ -27,4 +27,4 @@ USER node
 
 EXPOSE 3000
 
-CMD ["node", "dist/index.mjs"]
+CMD ["node", "/app/dist/index.mjs"]
