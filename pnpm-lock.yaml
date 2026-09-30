@@ -166,9 +166,6 @@ importers:
 
   .:
     dependencies:
-      '@dotenvx/dotenvx':
-        specifier: ^2.31.1
-        version: 2.31.1
       '@hono/node-server':
         specifier: ^2.1.1
         version: 2.1.1(hono@4.13.10)
@@ -182,6 +179,9 @@ importers:
         specifier: ^8.23.0
         version: 8.23.0
     devDependencies:
+      '@dotenvx/dotenvx':
+        specifier: ^2.31.1
+        version: 2.31.1
       '@faker-js/faker':
         specifier: ^10.6.0
         version: 10.6.0
