@@ -1,5 +1,5 @@
 # Multi-stage build: pnpm --prod reinstall leaves dev packages in node_modules/.pnpm,
-# so separate prod-deps stage keeps them out of the final image (90 MB vs 167 MB).
+# so a separate prod-deps stage keeps them out of the final image.
 FROM node:26 AS build
 
 RUN npm install -g pnpm@12
