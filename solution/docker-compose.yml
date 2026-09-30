@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:18-alpine
+    env_file: .env
+    ports:
+      - '5432:5432'
+    volumes:
+      # Host path persists data across down, .docker is gitignored
+      - ./.docker/postgres/data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - '3000:3000'
+    depends_on:
+      db:
+        condition: service_healthy
