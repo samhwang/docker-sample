@@ -76,11 +76,20 @@ Troubleshooting: if `/api/users` fails, check POSTGRES_HOST. Containers in the s
 
 ### Advanced
 
-- [ ] Build image under 200 MB. Use multi-stage builds and minimal base image (not `node:latest`).
+- [ ] Build image under 100 MB CONTENT SIZE (~450 MB DISK USAGE); well under naive baseline. Use multi-stage builds, minimal base image (not `node:latest`).
 - [ ] Test layer caching: edit `src/app.ts`, rebuild. The pnpm install layer must be skipped (not re-run).
 - [ ] Run `docker exec sample whoami` in a running container. Should not be `root`.
-- [ ] Final stage contains no devDependencies. Check with `docker run docker-sample-app sh -c 'ls node_modules'` (no `@types`, no `vitest`, etc).
+- [ ] Final stage contains no devDependencies. Dev packages can linger in `.pnpm`; check with `docker run --rm --entrypoint sh docker-sample-app -c 'ls /app/node_modules/.pnpm | grep -ci vitest'` (must print 0).
 - [ ] Persist database data across `docker compose down` / `up` using a bind mount to `./.docker/postgres/data`. Steps: seed DB, run compose, `docker compose down`, `docker compose up`. Users table persists. Reset: `docker compose down`, `rm -rf ./.docker/postgres/data`, `docker compose up`. Users table is empty.
+
+### Check your work
+
+- `docker images` — which column is DISK USAGE vs CONTENT SIZE.
+- `docker image inspect docker-sample-app --format '{{.Size}}'` — exact bytes on disk.
+- `docker history docker-sample-app` — per-layer sizes; base image dominates.
+- `docker run --rm --entrypoint sh docker-sample-app -c 'ls /app/node_modules/.pnpm | grep -ci vitest'` — must print 0.
+- `docker run --rm --entrypoint sh docker-sample-app -c 'du -sh /app/node_modules'` — total size.
+- `docker exec sample whoami` — should not be `root`.
 
 ### Tear down
 
