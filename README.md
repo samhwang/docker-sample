@@ -92,8 +92,21 @@ docker compose down
 
 ## References
 
-- [Docker Node.js official guide](https://docs.docker.com/guides/nodejs/)
-- [Docker build best practices](https://docs.docker.com/build/building/best-practices/)
-- [Docker build cache](https://docs.docker.com/build/cache/)
-- [Dockerfile syntax](https://docs.docker.com/reference/dockerfile/)
-- [Docker Compose syntax](https://docs.docker.com/reference/compose-file/)
+### Images & Tags
+
+- [Docker Hub `node` official image](https://hub.docker.com/_/node): tags (versions), slim/alpine variants, corepack behaviour in newer Node.
+- [Docker Hub `postgres` official image](https://hub.docker.com/_/postgres): tags, environment variables (POSTGRES_USER/PASSWORD/DB), PGDATA location (Postgres 18+ change), data persistence.
+
+### Dockerfile & Build
+
+- [Dockerfile syntax](https://docs.docker.com/reference/dockerfile/): reference for instructions (FROM, RUN, COPY, EXPOSE, CMD, USER, HEALTHCHECK).
+- [Docker Node.js official guide](https://docs.docker.com/guides/nodejs/): writing Node Dockerfiles, best practices for this platform.
+- [Docker build best practices](https://docs.docker.com/build/building/best-practices/): layer caching, ordering, minimal base images, non-root users, .dockerignore.
+- [Docker build cache](https://docs.docker.com/build/cache/): how Docker caches layers, cache invalidation, optimisation.
+- [Multi-stage builds](https://docs.docker.com/build/building/multi-stage/): reducing image size by excluding dev dependencies.
+
+### Docker Compose & Orchestration
+
+- [Docker Compose file reference](https://docs.docker.com/reference/compose-file/): service definition, depends_on, healthcheck, environment, volumes, ports, networks.
+- [Storage & volumes](https://docs.docker.com/storage/volumes/): bind mounts vs named volumes, persistence, data ownership.
+- [Container networking](https://docs.docker.com/network/): service name DNS resolution, container-to-container communication.
